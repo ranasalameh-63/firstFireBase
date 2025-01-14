@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>Sign Up page</title>
+</head>
+<body>
+    <div id="content container">
+        <h2>Registration</h2>
+    </div>
+    <div class="contact">
+        <div class="container1">
+      <div class="content">
+        <form action="" id="input">        
+          <input class="main-input" type="text" id="name" name="name" placeholder="Full Name" />
+          <input class="main-input" type="email" id="email" name="mail" placeholder="Email" />    
+          <input class="main-input" type="password" id="password" name="password" placeholder="Password" />
+          <input type="submit" id="button" value="Sign Up" />
+          <input type="button" id="button2" value="Login" onclick="window.location.href='login.html';" />
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDuUT9rfZIp8sIiTTI5Y4HWjds2mEBAvm4",
+      authDomain: "firstproject-11b91.firebaseapp.com",
+      projectId: "firstproject-11b91",
+      storageBucket: "firstproject-11b91.firebasestorage.app",
+      messagingSenderId: "305969919191",
+      appId: "1:305969919191:web:f23ac9dc9bf4e96f49ec92",
+      measurementId: "G-M9HS4HPY4L"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Event Listener with async/await
+        const button = document.getElementById('input');
+        button.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            let name = document.getElementById('name');
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                console.log("sign up successful:", user);
+                alert("sign up successful!");
+            } catch (error) {
+                console.error("Error:", error.code, error.message);
+                alert("Error: " + error.message);
+            }
+        });
+
+  
+
+
+</script>
+</body>
+</html>
